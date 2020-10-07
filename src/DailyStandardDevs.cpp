@@ -1,7 +1,7 @@
 #include "E:\SierraChart\ACS_Source\sierrachart.h"  //Fully-quaidfied path may be required for local builds
 //#include "sierrachart.h" //unqualified path should be OK for remote builds
 
-SCDLLName("Custom Study DLL")
+SCDLLName("CrystalPalace Studies")
 
 //Plots daily standard deviations based on SET and IV. Calculates [-3...3] standard deviations in 0.5 increments. By default, only [-2...2] are plotted.
 
@@ -44,8 +44,9 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 		sc.Subgraph[5].LineStyle = LINESTYLE_DASHDOT;
 		sc.Subgraph[5].PrimaryColor = RGB (185,255,185);
 		
-		sc.Subgraph[6].Name = "SET";
+		sc.Subgraph[6].Name = "Prior Settlement";
 		sc.Subgraph[6].DrawStyle = DRAWSTYLE_LINE;
+		sc.Subgraph[6].LineWidth = 10;
 		sc.Subgraph[6].PrimaryColor = RGB (221,226,227);
 		
 		sc.Subgraph[7].Name = "-0.5 Sigma";
@@ -83,22 +84,27 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 		sc.Input[1].SetFloat(0.0000f);
 		return;
 	}
+	
+	//Get Settlement and IV input parameters
+	float settlement = sc.Input[0].GetFloat();
+	float impliedVolatility = sc.Input[1].GetFloat();
+	
 	//Calculating Standard Deviation
-	float dev = (sc.Input[1].GetFloat()/ sqrt(252.00)) * sc.Input[0].GetFloat();
+	float dev = ( impliedVolatility / sqrt(252.00)) * settlement;
 			
 	//Plotting Deviations
-	sc.Subgraph[0][sc.Index] = sc.Input[0].GetFloat() + 3.0 * dev;
-	sc.Subgraph[1][sc.Index] = sc.Input[0].GetFloat() + 2.5 * dev;
-	sc.Subgraph[2][sc.Index] = sc.Input[0].GetFloat() + 2.0 * dev;
-	sc.Subgraph[3][sc.Index] = sc.Input[0].GetFloat() + 1.5 * dev;
-	sc.Subgraph[4][sc.Index] = sc.Input[0].GetFloat() + 1.0 * dev;
-	sc.Subgraph[5][sc.Index] = sc.Input[0].GetFloat() + 0.5 * dev;
-	sc.Subgraph[6][sc.Index] = sc.Input[0].GetFloat();
-	sc.Subgraph[7][sc.Index] = sc.Input[0].GetFloat() - 0.5 * dev;
-	sc.Subgraph[8][sc.Index] = sc.Input[0].GetFloat() - 1.0 * dev;
-	sc.Subgraph[9][sc.Index] = sc.Input[0].GetFloat() - 1.5 * dev;
-	sc.Subgraph[10][sc.Index] = sc.Input[0].GetFloat() - 2.0 * dev;
-	sc.Subgraph[11][sc.Index] = sc.Input[0].GetFloat() - 2.5 * dev;
-	sc.Subgraph[12][sc.Index] = sc.Input[0].GetFloat() - 3.0 * dev;
+	sc.Subgraph[0][sc.Index] = settlement + 3.0 * dev;
+	sc.Subgraph[1][sc.Index] = settlement + 2.5 * dev;
+	sc.Subgraph[2][sc.Index] = settlement + 2.0 * dev;
+	sc.Subgraph[3][sc.Index] = settlement + 1.5 * dev;
+	sc.Subgraph[4][sc.Index] = settlement + 1.0 * dev;
+	sc.Subgraph[5][sc.Index] = settlement + 0.5 * dev;
+	sc.Subgraph[6][sc.Index] = settlement;
+	sc.Subgraph[7][sc.Index] = settlement - 0.5 * dev;
+	sc.Subgraph[8][sc.Index] = settlement - 1.0 * dev;
+	sc.Subgraph[9][sc.Index] = settlement - 1.5 * dev;
+	sc.Subgraph[10][sc.Index] = settlement - 2.0 * dev;
+	sc.Subgraph[11][sc.Index] = settlement - 2.5 * dev;
+	sc.Subgraph[12][sc.Index] = settlement - 3.0 * dev;
 	
 }
