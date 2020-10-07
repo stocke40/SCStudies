@@ -1,4 +1,5 @@
-#include "E:\SierraChart\ACS_Source\sierrachart.h"
+#include "E:\SierraChart\ACS_Source\sierrachart.h"  //Fully-quaidfied path may be required for local builds
+//#include "sierrachart.h" //unqualified path should be OK for remote builds
 
 SCDLLName("Custom Study DLL")
 
@@ -17,11 +18,11 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 
 		//Subgraph Definition and Default Settings
 		sc.Subgraph[0].Name = "+3.0 Sigma";
-		sc.Subgraph[0].DrawStyle = DRAWSTYLE_LINE;
+		sc.Subgraph[0].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[0].PrimaryColor = RGB (255,255,255);
 		
 		sc.Subgraph[1].Name = "+2.5 Sigma";
-		sc.Subgraph[1].DrawStyle = DRAWSTYLE_LINE;
+		sc.Subgraph[1].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[1].PrimaryColor = RGB (255,255,255);
 		
 		sc.Subgraph[2].Name = "+2.0 Sigma";
@@ -67,11 +68,11 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 		sc.Subgraph[10].PrimaryColor = RGB (255,0,0);
 		
 		sc.Subgraph[11].Name = "-2.5 Sigma";
-		sc.Subgraph[11].DrawStyle = DRAWSTYLE_LINE;
+		sc.Subgraph[11].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[11].PrimaryColor = RGB (255,255,255);
 		
 		sc.Subgraph[12].Name = "-3.0 Sigma";
-		sc.Subgraph[12].DrawStyle = DRAWSTYLE_LINE;
+		sc.Subgraph[12].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[12].PrimaryColor = RGB (255,255,255);
 		
 		//Input Definition
