@@ -1,13 +1,23 @@
-#include "E:\SierraChart\ACS_Source\sierrachart.h"  //Fully-quaidfied path may be required for local builds
-//#include "sierrachart.h" //unqualified path should be OK for remote builds
-
+#include "E:\SierraChart\ACS_Source\sierrachart.h"	//Fully-quaidfied path may be required for local builds
+//#include "sierrachart.h" 							//unqualified path should be OK for remote builds, all other includes are stripped for remote builds
 SCDLLName("CrystalPalace Studies")
+/*
+The CrystalPalaceStudies DLL contains custom studies for SierraChart trading systems.
+These studies have been developed by u/CrystalPalacePirate, an r/thewallstreet sub-reddit contributor.
 
-//Plots daily standard deviations based on SET and IV. Calculates [-3...3] standard deviations in 0.5 increments. By default, only [-2...2] are plotted.
+See https://www.sierrachart.com/index.php?page=doc/AdvancedCustomStudyInterfaceAndLanguage.php 
+for more information about Sierra Chart Advanced Custom Studies. 
+*/
 
 SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 {
-	
+	/*
+	DailyStandardDevs plots daily standard deviations based on IV around the prior day's settlement for an instrument.
+	These levels often serve as short-term support and resistance and can be handy to help time short term trades.
+
+	It calculates [-3...3] standard deviations in 0.5 increments. By default, only [-2...2] are plotted.
+	*/
+
 	if (sc.SetDefaults)
 	{
 		//Setting Study Defaults
@@ -85,14 +95,15 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 		return;
 	}
 	
-	//Get Settlement and IV input parameters
-	float settlement = sc.Input[0].GetFloat();
-	float impliedVolatility = sc.Input[1].GetFloat();
+	//Get input parameters
+	float settlement = sc.Input[0].GetFloat();				//Prior day settlement level/price
+	float impliedVolatility = sc.Input[1].GetFloat();		//Implied Volatility
 	
-	//Calculating Standard Deviation
+	//Calculate one STDEV above the settlement price/level
 	float dev = ( impliedVolatility / sqrt(252.00)) * settlement;
 			
-	//Plotting Deviations
+	//Plot STDEV lines around settlement.  These levels, coupled with VWAP, often\
+	  provide short-term resistance and support.
 	sc.Subgraph[0][sc.Index] = settlement + 3.0 * dev;
 	sc.Subgraph[1][sc.Index] = settlement + 2.5 * dev;
 	sc.Subgraph[2][sc.Index] = settlement + 2.0 * dev;
