@@ -1,5 +1,6 @@
 #include "C:\SierraChart\ACS_Source\sierrachart.h"	//Fully-quaidfied path may be required for local builds
 //#include "sierrachart.h" 							//unqualified path should be OK for remote builds, all other includes are stripped for remote builds
+#include <stdio.h>
 SCDLLName("CrystalPalace Studies")
 /*
 The CrystalPalaceStudies DLL contains custom studies for SierraChart trading systems.
