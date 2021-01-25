@@ -1,0 +1,8 @@
+POST https://www.cmegroup.com/trading/equity-index/us-index/e-mini-sandp500.html 
+
+###
+
+POST https://www.cmegroup.com/content/cmegroup/en/trading/equity-index/us-index/e-mini-sandp500.html
+
+###
+<script type="text/javascript" src="/apps/cmegroup/widgets/productLibs/js/quotes.1201c3f2665ce014d1a0b2d532b9c98b.js"></script>

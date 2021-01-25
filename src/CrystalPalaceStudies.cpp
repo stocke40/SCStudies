@@ -7,6 +7,8 @@ These studies have been developed by u/CrystalPalacePirate, an r/thewallstreet s
 
 See https://www.sierrachart.com/index.php?page=doc/AdvancedCustomStudyInterfaceAndLanguage.php 
 for more information about Sierra Chart Advanced Custom Studies. 
+
+Also see https://www.sierrachart.com/index.php?page=doc/ACSILProgrammingConcepts.html
 */
 
 SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
@@ -16,6 +18,8 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 	These levels often serve as short-term support and resistance and can be handy to help time short term trades.
 
 	It calculates [-3...3] standard deviations in 0.5 increments. By default, only [-2...2] are plotted.
+
+	sc.Symbol == "F.US.MESPZ0" ?
 	*/
 
 	if (sc.SetDefaults)
@@ -56,7 +60,6 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 		
 		sc.Subgraph[6].Name = "Prior Settlement";
 		sc.Subgraph[6].DrawStyle = DRAWSTYLE_LINE;
-		sc.Subgraph[6].LineWidth = 10;
 		sc.Subgraph[6].PrimaryColor = RGB (221,226,227);
 		
 		sc.Subgraph[7].Name = "-0.5 Sigma";
@@ -99,8 +102,21 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 	float settlement = sc.Input[0].GetFloat();				//Prior day settlement level/price
 	float impliedVolatility = sc.Input[1].GetFloat();		//Implied Volatility
 	
+	if(sc.Index == 0)
+	{
+    	//Code to run only on study full recalculation
+		/*
+			If settlement and/or implied volatility input parmaters are zero, 
+			we'd like to get these values from an external source.
+		*/
+		if (settlement == 0)
+		{
+			//GET https://www.cmegroup.com/trading/equity-index/us-index/e-mini-sandp500.html
+		}
+	}
+
 	//Calculate one STDEV above the settlement price/level
-	float dev = ( impliedVolatility / sqrt(252.00)) * settlement;
+	float dev = ( impliedVolatility / (sqrt(252.00))) * settlement;
 			
 	//Plot STDEV lines around settlement.  
 	sc.Subgraph[0][sc.Index] = settlement + 3.0 * dev;
