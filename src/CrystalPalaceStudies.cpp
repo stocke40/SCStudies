@@ -102,8 +102,7 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 	//Calculate one STDEV above the settlement price/level
 	float dev = ( impliedVolatility / sqrt(252.00)) * settlement;
 			
-	//Plot STDEV lines around settlement.  These levels, coupled with VWAP, often\
-	  provide short-term resistance and support.
+	//Plot STDEV lines around settlement.  
 	sc.Subgraph[0][sc.Index] = settlement + 3.0 * dev;
 	sc.Subgraph[1][sc.Index] = settlement + 2.5 * dev;
 	sc.Subgraph[2][sc.Index] = settlement + 2.0 * dev;
