@@ -28,7 +28,7 @@ DailyStandardDevs plots daily standard deviations based on IV around the prior d
 
 The DailyStandardDevs study calculates [-3...3] standard deviations in 0.5 increments. By default, only [-2...2] are plotted.  These levels often serve as short-term support and resistance and can be handy to help time short term trades.  
 
-Inputs to this study are the prior day's settlement of the instrument, and the IV of the instrument as reported at 9PM ET the prior day for the instrument.  Prio day's settlement can be obtained form the CME website.  A frequent reddit contributor, u/UberBotMan, often posts both of these these levels to the r/thewallstreet sub-reddit most days as well.
+Inputs to this study are the prior day's settlement of the instrument, and the IV of the instrument as reported at 9PM ET the prior day for the instrument.  Prior day's settlement can be obtained form the CME website.  A frequent reddit contributor, u/UberBotMan, often posts both of these these levels to the r/thewallstreet sub-reddit most days as well.
 
 ## Building
 
