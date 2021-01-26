@@ -25,31 +25,27 @@ $ cd tgt
 
 #### Compile the source
 
-Compile the source with gcc:
+See the [64-bit compile options](https://www.sierrachart.com/index.php?page=doc/AdvancedCustomStudyInterfaceAndLanguage.php#RemoteCompilerParameters) from the Sierra Chart documentation.  
+
+Compile the source with g++:
 
 ```Shell
 stocke@MSI MINGW64 ~/gitrepos/SCStudies/tgt (main)
-$ gcc -c ../src/CrystalPalaceStudies.cpp
-In file included from C:\SierraChart\ACS_Source\scstructures.h:101,
-                 from C:\SierraChart\ACS_Source\sierrachart.h:22,
-                 from ../src/CrystalPalaceStudies.cpp:1:
-C:\SierraChart\ACS_Source\scdatetime.h:130:52: warning: overflow in conversion from 'long long int' to 'time_t' {aka 'long int'} changes value from '-2209161600' to '2085805696' [-Woverflow]
-  = std::chrono::system_clock::from_time_t(-25569ll * 86400ll);
-                                           ~~~~~~~~~^~~~~~~~~
-```
-
-#### Build the DLL
-
-Next, you will need to build the DLL, or [Dynamic-link Library](https://en.wikipedia.org/wiki/Dynamic-link_library).  Here, you can find more information on [Building and Using DLLs](https://cygwin.com/cygwin-ug-net/dll.html).  
-
-```Shell
-stocke@MSI MINGW64 ~/gitrepos/SCStudies/tgt (main)
-$ gcc -shared -o CrystalPalaceStudies.dll CrystalPalaceStudies.o
-CrystalPalaceStudies.o:CrystalPalaceStudies.cpp:(.text+0xb49): undefined reference to `std::ios_base::Init::~Init()'
-CrystalPalaceStudies.o:CrystalPalaceStudies.cpp:(.text+0xb6a): undefined reference to `std::ios_base::Init::Init()'
-CrystalPalaceStudies.o:CrystalPalaceStudies.cpp:(.eh_frame$_ZNSt6chrono3_V212system_clock11from_time_tEl+0x13): undefined reference to `__gxx_personality_v0'
-collect2.exe: error: ld returned 1 exit status
-
-stocke@MSI MINGW64 ~/gitrepos/SCStudies/tgt (main)
-$ 
+$ x86_64-w64-mingw32-g++ \
+  -D _WIN64 \
+  -U NOMINMAX \
+  -march=x86-64 \
+  -mtune=x86-64 \
+  -O2 \
+  -shared \
+  -static \
+  -static-libgcc \
+  -static-libstdc++ \
+  -s \
+  -fno-rtti \
+  -fno-exceptions \
+  -std=gnu++11 \
+  ../src/CrystalPalaceStudies_2217.cpp \
+  -o CrystalPalaceStudies_2217_64.dll \
+  -Wno-deprecated
 ```
