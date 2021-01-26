@@ -22,11 +22,13 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 	{
 		//Setting Study Defaults
 		sc.GraphName = "Daily Standard Deviations";
+		sc.GraphShortName = "dStdDev";
 		sc.GraphRegion = 0;
 		sc.AutoLoop = 1; 
 
 
 		//Subgraph Definition and Default Settings
+		//These are documented at https://www.sierrachart.com/index.php?page=doc/ACSIL_Members_scSubgraph.html 
 		sc.Subgraph[0].Name = "+3.0 Sigma";
 		sc.Subgraph[0].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[0].PrimaryColor = RGB (255,255,255);
@@ -55,9 +57,11 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 		sc.Subgraph[5].PrimaryColor = RGB (185,255,185);
 		
 		sc.Subgraph[6].Name = "Prior Settlement";
-		sc.Subgraph[6].DrawStyle = DRAWSTYLE_LINE;
-		sc.Subgraph[6].LineWidth = 10;
+		sc.Subgraph[6].DrawStyle = DRAWSTYLE_DASH;
+		sc.Subgraph[6].LineWidth = 1;
 		sc.Subgraph[6].PrimaryColor = RGB (221,226,227);
+		sc.Subgraph[6].ShortName = "Setl";
+		sc.Subgraph[6].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[7].Name = "-0.5 Sigma";
 		sc.Subgraph[7].DrawStyle = DRAWSTYLE_DASH;
