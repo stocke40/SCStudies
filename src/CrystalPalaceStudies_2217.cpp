@@ -20,15 +20,14 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 
 	if (sc.SetDefaults)
 	{
-		//Setting Study Defaults
+		//Setting Study Defaults - see https://www.sierrachart.com/index.php?page=doc/ACSIL_Members_Variables_And_Arrays.html
 		sc.GraphName = "Daily Standard Deviations";
 		sc.GraphShortName = "dStdDev";
 		sc.GraphRegion = 0;
 		sc.AutoLoop = 1; 
 
 
-		//Subgraph Definition and Default Settings
-		//These are documented at https://www.sierrachart.com/index.php?page=doc/ACSIL_Members_scSubgraph.html 
+		//Subgraph Definition and Default Settings - see https://www.sierrachart.com/index.php?page=doc/ACSIL_Members_scSubgraph.html 
 		sc.Subgraph[0].Name = "+3.0 Sigma";
 		sc.Subgraph[0].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[0].PrimaryColor = RGB (255,255,255);
