@@ -20,71 +20,98 @@ SCSFExport scsf_DailyStandardDevs(SCStudyInterfaceRef sc)
 
 	if (sc.SetDefaults)
 	{
-		//Setting Study Defaults
+		//Setting Study Defaults - see https://www.sierrachart.com/index.php?page=doc/ACSIL_Members_Variables_And_Arrays.html
 		sc.GraphName = "Daily Standard Deviations";
+		sc.GraphShortName = "dStdDev";
 		sc.GraphRegion = 0;
 		sc.AutoLoop = 1; 
 
 
-		//Subgraph Definition and Default Settings
+		//Subgraph Definition and Default Settings - see https://www.sierrachart.com/index.php?page=doc/ACSIL_Members_scSubgraph.html 
 		sc.Subgraph[0].Name = "+3.0 Sigma";
 		sc.Subgraph[0].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[0].PrimaryColor = RGB (255,255,255);
+		sc.Subgraph[0].ShortName = "+3.0dev";
+		sc.Subgraph[0].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[1].Name = "+2.5 Sigma";
 		sc.Subgraph[1].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[1].PrimaryColor = RGB (255,255,255);
+		sc.Subgraph[1].ShortName = "+2.5dev";
+		sc.Subgraph[1].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[2].Name = "+2.0 Sigma";
 		sc.Subgraph[2].DrawStyle = DRAWSTYLE_LINE;
 		sc.Subgraph[2].PrimaryColor = RGB (0,230,0);
+		sc.Subgraph[2].ShortName = "+2.0dev";
+		sc.Subgraph[2].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[3].Name = "+1.5 Sigma";
 		sc.Subgraph[3].DrawStyle = DRAWSTYLE_LINE;
 		sc.Subgraph[3].LineStyle = LINESTYLE_DASH;
 		sc.Subgraph[3].PrimaryColor = RGB (17,255,17);
+		sc.Subgraph[3].ShortName = "+1.5dev";
+		sc.Subgraph[3].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[4].Name = "+1.0 Sigma";
 		sc.Subgraph[4].DrawStyle = DRAWSTYLE_DASH;
 		sc.Subgraph[4].LineStyle = LINESTYLE_DASH;
 		sc.Subgraph[4].PrimaryColor = RGB (100,255,100);
+		sc.Subgraph[4].ShortName = "+1.0dev";
+		sc.Subgraph[4].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[5].Name = "+0.5 Sigma";
 		sc.Subgraph[5].DrawStyle = DRAWSTYLE_DASH;
 		sc.Subgraph[5].LineStyle = LINESTYLE_DASHDOT;
 		sc.Subgraph[5].PrimaryColor = RGB (185,255,185);
+		sc.Subgraph[5].ShortName = "+0.5dev";
+		sc.Subgraph[5].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[6].Name = "Prior Settlement";
-		sc.Subgraph[6].DrawStyle = DRAWSTYLE_LINE;
-		sc.Subgraph[6].LineWidth = 10;
+		sc.Subgraph[6].DrawStyle = DRAWSTYLE_DASH;
+		sc.Subgraph[6].LineWidth = 1;
 		sc.Subgraph[6].PrimaryColor = RGB (221,226,227);
+		sc.Subgraph[6].ShortName = "Setl";
+		sc.Subgraph[6].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[7].Name = "-0.5 Sigma";
 		sc.Subgraph[7].DrawStyle = DRAWSTYLE_DASH;
 		sc.Subgraph[7].LineStyle = LINESTYLE_DASHDOT;
 		sc.Subgraph[7].PrimaryColor = RGB (255,200,200);
+		sc.Subgraph[7].ShortName = "-0.5dev";
+		sc.Subgraph[7].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[8].Name = "-1.0 Sigma";
 		sc.Subgraph[8].DrawStyle = DRAWSTYLE_DASH;
 		sc.Subgraph[8].LineStyle = LINESTYLE_DASH;
 		sc.Subgraph[8].PrimaryColor = RGB (255,132,132);
+		sc.Subgraph[8].ShortName = "-1.0dev";
+		sc.Subgraph[8].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[9].Name = "-1.5 Sigma";
 		sc.Subgraph[9].DrawStyle = DRAWSTYLE_LINE;
 		sc.Subgraph[9].LineStyle = LINESTYLE_DASH;
 		sc.Subgraph[9].PrimaryColor = RGB (255,32,32);
+		sc.Subgraph[9].ShortName = "-1.5dev";
+		sc.Subgraph[9].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[10].Name = "-2.0 Sigma";
 		sc.Subgraph[10].DrawStyle = DRAWSTYLE_LINE;
 		sc.Subgraph[10].PrimaryColor = RGB (255,0,0);
+		sc.Subgraph[10].ShortName = "-2.0dev";
+		sc.Subgraph[10].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[11].Name = "-2.5 Sigma";
 		sc.Subgraph[11].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[11].PrimaryColor = RGB (255,255,255);
+		sc.Subgraph[11].ShortName = "-2.5dev";
+		sc.Subgraph[11].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		sc.Subgraph[12].Name = "-3.0 Sigma";
 		sc.Subgraph[12].DrawStyle = DRAWSTYLE_IGNORE;
 		sc.Subgraph[12].PrimaryColor = RGB (255,255,255);
+		sc.Subgraph[12].ShortName = "-3.0dev";
+		sc.Subgraph[12].LineLabel = LL_DISPLAY_NAME | LL_NAME_ALIGN_LEFT_EDGE;
 		
 		//Input Definition
 		sc.Input[0].Name = "Settlement [Format: 3397.50]";
